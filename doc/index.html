@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>独角兽使用手册</title>
+<style>
+html, body {
+margin: 0;
+padding: 0;
+}
+
+body {
+background: #777;
+font-family: sans-serif;
+line-height: 170%;
+}
+
+header, nav, article, footer {
+display: block;
+}
+
+#wrapper {
+background: #fff;
+margin: 0 auto;
+max-width: 1200px;
+}
+
+#menu {
+background: #000;
+border-radius: 24px;
+bottom: 30px;
+display: none;
+height: 48px;
+opacity: 0.5;
+position: fixed;
+right: 30px;
+transition: opacity 0.3s ease;
+width: 48px;
+}
+
+#menu span {
+background: #ccc;
+display: block;
+height: 3px;
+margin: 5px auto;
+width: 24px;
+}
+
+#menu span.first {
+margin-top: 15px;
+}
+
+.show-menu #menu {
+opacity: 0.75;
+}
+
+.show-menu #menu span {
+background: #fff;
+}
+
+nav {
+background: #fff;
+border-right: 5px solid #777;
+bottom: 0;
+color: #333;
+font-size: 10pt;
+overflow-x: hidden;
+overflow-y: auto;
+padding: 20px 0 20px 40px;
+position: fixed;
+top: 0;
+width: 195px;
+}
+
+nav ul {
+margin: 0;
+padding: 0;
+}
+
+nav a {
+color: #777;
+text-decoration: none;
+}
+
+nav a:hover {
+text-decoration: underline;
+}
+
+nav li {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+nav .level2 {
+font-size: 11pt;
+font-weight: bold;
+}
+
+nav .level3 {
+padding-left: 1em;
+}
+
+nav .level3:before { 
+content: "» ";
+}
+
+nav .level4 {
+padding-left: 2em;
+}
+
+nav .level4:before { 
+content: "› ";
+}
+
+article {
+color: #333;
+font-size: 11pt;
+margin-left: 240px;
+padding: 40px;
+word-break: break-all;
+}
+
+header {
+border-bottom: solid 2px #333;
+height: 90px;
+margin-bottom: 30px;
+}
+
+header h1 {
+color: #f60;
+font-family: monospace;
+font-size: 20pt;
+margin: 0 0 2pt 0;
+}
+
+header h1 sup {
+color: #f90;
+font-size: 11pt;
+}
+
+header .link {
+float: right;
+font-size: 9pt;
+}
+
+header .comment {
+color: #777;
+font-family: monospace;
+font-size: 10pt;
+}
+
+article h2 {
+border-bottom: dotted 1px #777;
+color: #000;
+font-size: 12pt;
+margin: 1em 0;
+padding: 0 0 0.3em 0;
+}
+
+article h2:before {
+content: "# "
+}
+
+article h3 {
+color: #000;
+font-size: 11pt;
+margin: 1em 0;
+padding: 0;
+}
+
+article h4 {
+color: #000;
+font-size: inherit;
+font-style: italic;
+font-weight: normal;
+margin: 1em 0;
+padding: 0;
+}
+
+article a {
+color: #06f;
+font-weight: bold;
+}
+
+article p {
+margin: 1em 0;
+}
+
+article p em {
+border-bottom: 2px solid #f90;
+font-style: normal;
+}
+
+article p strong {
+border-bottom: 2px solid #c00;
+}
+
+article p code {
+font-size: 10pt;
+outline: 2px solid #ff9;
+}
+
+article pre {
+border: dashed 1px #ccc;
+border-left: solid 2px #ccc;
+font-size: 10pt;
+line-height: 140%;
+margin: 1em 0;
+overflow-x: auto;
+overflow-y: padding;
+padding: 1em 0 1em 2em;
+}
+
+article blockquote {
+border-left: solid 2px #f90;
+margin: 0;
+padding: 0 0 0 2em;
+}
+
+footer {
+border-top: 1px solid #ccc;
+font-size: 10pt;
+font-weight: bold;
+margin-top: 4em;
+}
+
+@media (max-width: 768px) {
+	#menu {
+	display: block;
+	}
+
+	nav {
+	border-right: none;
+	line-height: 240%;
+	margin-left: -240px;
+	transition: margin 0.3s ease;
+	width: 200px;
+	}
+
+	.show-menu nav {
+	box-shadow: 5px 5px 5px #777;
+	margin-left: 0;
+	}
+
+	article {
+	margin-left: 0;
+	padding: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	article {
+	padding: 10px;
+	}
+}
+</style>
+<script>
+(function (tags) {
+	var i = 0, len = tags.length;
+
+	for (; i < len; ++i) {
+	    document.createElement(tags[i]);
+	}
+}([ 'header', 'nav', 'article', 'footer' ]));
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="menu">
+<span class="first"></span>
+<span></span>
+<span></span>
+</div>
+<nav>
+<ul>
+<li class="level2"><a href="#1">入门</a></li><li class="level3"><a href="#1.1">准备目录</a></li><li class="level4"><a href="#1.1.1">工作目录</a></li><li class="level4"><a href="#1.1.2">服务目录</a></li><li class="level3"><a href="#1.2">编写代码</a></li><li class="level3"><a href="#1.3">启动服务</a></li><li class="level2"><a href="#2">规格描述</a></li><li class="level3"><a href="#2.1">适用场景</a></li><li class="level3"><a href="#2.2">配置选项</a></li><li class="level3"><a href="#2.3">生效条件</a></li><li class="level3"><a href="#2.4">异常处理</a></li><li class="level2"><a href="#3">静态文件服务</a></li><li class="level3"><a href="#3.1">异常处理</a></li><li class="level2"><a href="#4">文件合并</a></li><li class="level3"><a href="#4.1">异常处理</a></li><li class="level4"><a href="#4.1.1">文件路径重复</a></li><li class="level4"><a href="#4.1.2">文件不存在</a></li><li class="level4"><a href="#4.1.3">文件类型不一致</a></li><li class="level2"><a href="#5">元数据</a></li><li class="level3"><a href="#5.1">数据格式</a></li><li class="level3"><a href="#5.2">数据字段</a></li><li class="level4"><a href="#5.2.1">mime</a></li><li class="level4"><a href="#5.2.2">mtime</a></li><li class="level4"><a href="#5.2.3">requires</a></li><li class="level3"><a href="#5.3">数据生成</a></li><li class="level3"><a href="#5.4">异常处理</a></li><li class="level2"><a href="#6">服务端依赖管理</a></li><li class="level3"><a href="#6.1">多重入口</a></li><li class="level3"><a href="#6.2">动态依赖</a></li><li class="level3"><a href="#6.3">依赖排除</a></li><li class="level3"><a href="#6.4">异常处理</a></li><li class="level4"><a href="#6.4.1">重复依赖</a></li><li class="level4"><a href="#6.4.2">环状依赖</a></li><li class="level4"><a href="#6.4.3">依赖缺失</a></li></ul>
+
+</nav>
+<article>
+<header>
+<h1>Unicorn();<sup>3.0.0 beta</sup></h1>
+<div class="comment">// Assets server with dependencies resolution</div>
+</header>
+<p><strong>独角兽HTTP服务器</strong>（以下简称<em>独角兽</em>）是一个高级静态资源服务器系统，除了支持基本的静态文件服务外，还支持<em>文件合并</em>、<em>服务端依赖管理</em>等高阶功能。</p>
+
+<h2 id="1">入门</h2>
+<p>我们先把独角兽服务器环境搭建起来，以便接下来可以手把手地介绍如何使用独角兽。</p>
+<p>独角兽是为<a href="http://nqdeng.github.io/pegasus/">天马HTTP中间件</a>（以下简称<em>天马</em>）开发的一个功能模块，而后者又运行在<a href="http://nodejs.org/">NodeJS</a>之上，因此环境搭建的过程非常类似编写一个NodeJS应用程序。</p>
+<h3 id="1.1">准备目录</h3>
+<h4 id="1.1.1">工作目录</h4>
+<p>首先新建一个目录作为<em>工作目录</em>，然后在该目录下运行以下命令（目前独角兽还没有发布到NPM上，以下命令只是示意一下，暂时不要当真）：</p>
+<blockquote>
+<p>   npm install pegasus
+   npm install unicorn</p>
+</blockquote>
+<p>最后，我们在工作目录下再新建一个<code>app.js</code>文件。完成这些操作后，应该能得到以下目录结构：</p>
+<pre><code>- workdir/
+    - node_modules/
+        + pegasus/
+        + unicorn/
+    app.js</code></pre>
+<h4 id="1.1.2">服务目录</h4>
+<p>然后再新建一个目录（例如<code>/home/admin/deploy/</code>）作为<em>服务目录</em>，用于存放对外服务的静态资源文件。有了一个空荡荡的目录后，我们可以再放入一点文件（例如<code>index.html</code>）。完成这些操作后，应该能得到以下目录结构：</p>
+<pre><code>- /home/admin/deploy/
+    index.html</code></pre>
+<h3 id="1.2">编写代码</h3>
+<p>接下来，我们需要编辑<code>app.js</code>，使用<em>天马</em>编写一个HTTP服务器，并配置和使用<em>独角兽</em>模块。</p>
+<pre><code>var http = require(&#39;http&#39;),
+    pegasus = require(&#39;pegasus&#39;),
+    unicorn = require(&#39;unicorn&#39;);
+
+var router = pegasus()
+    .mount(&#39;/&#39;, unicorn(&#39;file:///home/admin/deploy/&#39;));
+
+http.createServer(router).listen(8080);</code></pre>
+<h3 id="1.3">启动服务</h3>
+<p>虽然生产环境下的服务运行方式要更加复杂和周全，但我们在开发环境下暂时只需要在工作目录下运行<code>node app.js</code>命令把服务跑起来。正常的话，服务目录里的文件应该能够被访问了：</p>
+<pre><code>=&gt; GET http://127.0.0.1:8080/index.html
+&lt;= HTTP/1.1 200 OK
+   Content-Type: text/html
+   ...
+
+   $(index.html)</code></pre>
+<blockquote>
+<p>   我们约定使用<code>$(pathname)</code>来表示请求的文件的内容，后边的示例中也是如此。</p>
+</blockquote>
+
+<h2 id="2">规格描述</h2>
+<h3 id="2.1">适用场景</h3>
+<p>独角兽<em>适合</em>为小文件（兆级别）提供静态资源服务，<em>不适合</em>为大文件（百兆级别）提供下载服务。</p>
+<h3 id="2.2">配置选项</h3>
+<blockquote>
+<p>   unicorn(config:Object|string)</p>
+</blockquote>
+<p><code>unicorn</code>是一个模块工厂函数，在创建模块实例的时候可以传入一个<code>config</code>配置。</p>
+<ul>
+<li><p>config.source:string</p>
+<p>  配置<em>文件源</em>所在位置。独角兽在读取被请求的静态文件时，使用<code>source + pathname</code>作为<em>请求地址</em>，并使用天马的<a href="http://nqdeng.github.io/pegasus/#5">服务端请求</a>读取文件内容，支持<code>file:</code>、<code>http(s):</code>与<code>loop:</code>三种请求协议。</p>
+<p>  当<code>config</code>中只包含<code>source</code>字段时，可以直接使用该字段的值作为配置项：</p>
+<pre><code>  unicorn(&#39;file:///some/dir/&#39;)</code></pre>
+</li>
+<li><p>config.expires:number</p>
+<p>  文件缓存有效期，以<em>秒</em>为单位，默认为<em>一年</em>。</p>
+</li>
+</ul>
+<h3 id="2.3">生效条件</h3>
+<p>独角兽模块位于某一条流水线中。当传入独角兽模块的请求和响应数据同时满足以下条件时，模块才会生效：</p>
+<ul>
+<li><p><code>request.method()</code>等于<code>GET</code>或<code>HEAD</code>。</p>
+</li>
+<li><p><code>response.status()</code>等于<code>404</code>。</p>
+</li>
+</ul>
+<p>因此，以下情况下，独角兽模块不会对请求做处理:</p>
+<ul>
+<li><p>不是一个<code>GET</code>或<code>HEAD</code>请求。</p>
+<pre><code>  .mount(&#39;/&#39;, [
+      function (context) {
+          context.request.method(&#39;POST&#39;);
+      },
+      unicorn(&#39;file:///home/admin/deploy/&#39;)
+  ])</code></pre>
+</li>
+<li><p>上一个模块已经处理了请求。</p>
+<pre><code>  .mount(&#39;/&#39;, [
+      function (context) {
+          context.response
+              .status(200).data(&#39;Hello World!&#39;);
+      },
+      unicorn(&#39;file:///home/admin/deploy/&#39;)
+  ])</code></pre>
+</li>
+</ul>
+<h3 id="2.4">异常处理</h3>
+<p>独角兽在处理请求的过程中，如果发生了一些<em>可预见</em>的异常（比如请求的文件不存在），独角兽会直接返回一个合适的响应。但如果发生了独角兽<em>无法处理</em>的异常（比如磁盘IO错误），独角兽会把异常抛给天马。通过天马的路由器回调函数可以捕获异常，并可以记录一些日志。</p>
+<pre><code>pegasus(function (err) {
+    console.error(err.stack);
+})
+.mount(&#39;/&#39;, unicorn(&#39;file:///home/admin/deploy/&#39;));</code></pre>
+
+<h2 id="3">静态文件服务</h2>
+<p>独角兽首先是一个基本的静态资源服务器，能够处理以下形式的任何静态文件请求：</p>
+<blockquote>
+<p>   GET /some/file</p>
+</blockquote>
+<p>例如，在处理<code>GET /index.html</code>时，如果能够读取到请求的文件，则返回如下的200响应：</p>
+<pre><code>=&gt; GET /index.html
+&lt;= HTTP/1.1 200 OK
+   Content-Type: text/html
+   Expires: Tue, 26 May 2015 07:46:28 GMT
+   Cache-Control: max-age=31536000
+   Last-Modified: Sun, 04 May 2014 08:32:49 GMT
+
+   $(index.html)</code></pre>
+<p>可以看到，响应头里包含了<em>文件类型</em>、<em>最后修改日期</em>、<em>缓存有效期</em>等基本信息，响应数据则是文件自身的内容。</p>
+<h3 id="3.1">异常处理</h3>
+<p>当请求的文件无法被读取时，独角兽返回404响应。</p>
+<pre><code>=&gt; GET /unexist.js
+&lt;= HTTP/1.1 404 Not Found</code></pre>
+
+<h2 id="4">文件合并</h2>
+<p>独角兽允许浏览器通过以下形式的URL，一次请求多个同类型的文件。</p>
+<blockquote>
+<p>   GET /base/??a.js,b.js</p>
+</blockquote>
+<p>这个URL可以拆分为以下两个文件路径：</p>
+<blockquote>
+<p>   &quot;base/a.js&quot;
+   &quot;base/b.js&quot;</p>
+</blockquote>
+<p>独角兽从<em>文件源</em>读取文件内容，并按照文件路径出现的顺序合并文件内容后返回响应。</p>
+<pre><code>=&gt; GET /base/??a.js,b.js
+&lt;= HTTP/1.1 200 OK
+   Content-Type: application/javascript
+   Expires: Mon, 25 May 2015 13:40:23 GMT
+   Cache-Control: max-age=31536000
+   Last-Modified: Mon, 25 May 2014 13:40:23 GMT
+   ...
+
+   $(base/a.js) + $(base/b.js)</code></pre>
+<p>文件合并后，响应头中的最后修改日期使用多个文件当中<em>最新</em>时间。</p>
+<h3 id="4.1">异常处理</h3>
+<h4 id="4.1.1">文件路径重复</h4>
+<p>当URL中同一个文件路径出现了一次以上时，独角兽会<em>忽略</em>重复的路径，而<em>不会</em>把同一个文件合并两次。</p>
+<pre><code>=&gt; GET /base/??a.js,b.js,a.js
+&lt;= HTTP/1.1 200 OK
+   ...
+
+   $(base/a.js) + $(base/b.js)</code></pre>
+<h4 id="4.1.2">文件不存在</h4>
+<p>当URL中的<em>任意</em>文件无法被读取时，独角兽返回404响应。</p>
+<pre><code>=&gt; GET /base/??a.js,b.js,unexist.js
+&lt;= HTTP/1.1 404 Not Found</code></pre>
+<h4 id="4.1.3">文件类型不一致</h4>
+<p>当URL中出现的所有文件的文件类型（MIME）<em>不一致</em>时，独角兽返回500响应。</p>
+<pre><code>=&gt; GET /base/??a.js,b.css
+&lt;= HTTP/1.1 500 Internal Server Error</code></pre>
+
+<h2 id="5">元数据</h2>
+<p>独角兽除了能够处理通常的静态资源文件外，还能够处理带有<em>元数据</em>（meta，描述数据的数据）的文件。通常的文件只包含文件自身的数据，示意如下：</p>
+<pre><code>+--------+
+|  DATA  |
++--------+</code></pre>
+<p>而独角兽允许文件在头部包含一段额外的数据，用于保存与文件相关的元数据：</p>
+<pre><code>+--------+
+|  META  |
++--------+
+|  DATA  |
++--------+</code></pre>
+<p>元数据类似于一种注释，描述了关于文件的一些额外信息，例如文件类型，或是文件的最后修改日期。</p>
+<h3 id="5.1">数据格式</h3>
+<p>独角兽支持的元数据使用<em>JSON</em>格式，按照以下二进制方式保存在文件头部：</p>
+<pre><code>+-------+-----+-----+------+------+
+| MAGIC | VER | LEN | JSON | TAIL |
++-------+-----+-----+------+------+</code></pre>
+<ul>
+<li><p>MAGIC</p>
+<p>  8字节，内容固定为<code>2F 2A 21 6D 65 74 61 20</code>，按<code>utf8</code>编码转换为字符串后内容为<code>/*!meta</code>，用于判断一个文件是否带有元数据。</p>
+</li>
+<li><p>VER</p>
+<p>  4字节，保留字段，用于在将来标识数据格式的版本。</p>
+</li>
+<li><p>LEN</p>
+<p>  4字节，按<code>utf8</code>编码转换为字符串后内容为<em>JSON</em>二进制数据的十六进制字节长度。由于四位十六进制数字最大值为<code>FFFF</code>，因此<em>JSON</em>二进制数据的最大长度为65535字节。</p>
+</li>
+<li><p>JSON</p>
+<p>  JSON字符串按<code>utf8</code>编码转换为二进制数据后的结果。</p>
+</li>
+<li><p>TAIL</p>
+<p>  2字节，内容固定为<code>2A 2F</code>，按<code>utf8</code>编码转换为字符串后内容为<code>*/</code>。</p>
+</li>
+</ul>
+<p>以下是一个带有元数据的文件的示例：</p>
+<pre><code>        MAGIC                VER         LEN
+-----------------------  ----------- -----------
+2F 2A 21 6D 65 74 61 20  20 20 20 20 20 20 20 32  | /*!meta         2
+7B 7D 2A 2F 0A 76 61 72  20 61 3B                 | {}*/.var a;
+----- -----
+ JSON  TAIL</code></pre>
+<p>如果按<code>utf8</code>将以上文件转换为字符串后，内容如下：</p>
+<pre><code>/*!meta        2{}*/
+var a;</code></pre>
+<p>可以看到，以上文件虽然带有元数据，但由于JSON是空的，所以并不包含任何实质内容。</p>
+<h3 id="5.2">数据字段</h3>
+<p>独角兽使用元数据中的以下字段实现一些功能：</p>
+<h4 id="5.2.1">mime</h4>
+<p>元数据中可以通过<code>mime</code>字段来指定文件的MIME类型，这样独角兽就不再根据文件扩展名来判断文件的MIME类型。</p>
+<pre><code>{ &quot;mime&quot;: &quot;application/javascript&quot; }</code></pre>
+<h4 id="5.2.2">mtime</h4>
+<p>元数据中可以通过<code>mtime</code>字段，以<code>GMT</code>格式来指定文件的最后修改日期，这样独角兽就不再读取文件原本的最后修改日期。</p>
+<pre><code>{ &quot;mtime&quot;: &quot;Mon, 23 May 2014 08:46:54 GMT&quot; }</code></pre>
+<h4 id="5.2.3">requires</h4>
+<p>元数据中可以通过<code>requires</code>字段来申明文件依赖的其它文件的绝对路径，这样独角兽就会针对该文件启用<em>服务端依赖管理</em>。</p>
+<pre><code>{ &quot;requires&quot;: [ &quot;b.js&quot; ] }</code></pre>
+<h3 id="5.3">数据生成</h3>
+<p>元数据虽然转换为字符串后是可读的，但很明显，元数据不是开发者手写出来的。如果希望利用上独角兽的元数据相关功能，就需要借助<em>构建工具</em>来对发布上线的静态文件做编译。</p>
+<p>例如，开发者可以在<code>a.css</code>当中按照以下方式申明依赖：</p>
+<pre><code>@import &#39;b.css&#39;;
+p {color:red;}</code></pre>
+<p>在<code>a.css</code>发布上线前，开发者可以使用<em>构建工具</em>将<code>a.css</code>中的依赖申明语句转换为独角兽支持的元数据，转换后的文件内容如下：</p>
+<pre><code>/*!meta       16{&quot;requires&quot;:[&quot;b.css&quot;]}*/
+p {color:red;}</code></pre>
+<h3 id="5.4">异常处理</h3>
+<p>如果请求的文件带有元数据，但是数据损，无法被正常解析，这种情况下独角兽会抛出异常。</p>
+
+<h2 id="6">服务端依赖管理</h2>
+<p>文件可以通过元数据中的<code>requires</code>字段申明依赖，而独角兽会对这类文件启用<em>服务端依赖管理</em>。</p>
+<p>例如有以下文件间依赖关系，下边的文件依赖上边的文件。</p>
+<pre><code>  d   e
+   \ /
+    b   c
+     \ /
+      a</code></pre>
+<p>如果我们请求<code>a</code>时，独角兽会从<code>a</code>出发，<em>实时</em>解析整个依赖树，并按照<em>深度优先</em>和<em>后续遍历</em>的方式决定文件的输出顺序，并最终返回<code>a</code>自身及其依赖的所有文件的内容。因此有以下结果：</p>
+<pre><code>=&gt; GET /a
+&lt;= HTTP/1.1 200 OK
+   ...
+   $(d) + $(e) + $(b) + $(c) + $(a)</code></pre>
+<p>如果没有在文件中申明依赖，我们就需要在浏览器端构造出<code>/??d.js,e.js,b.js,c.js,a.js</code>这样的请求来实现相同结果，但服务端依赖解析让我们只需要请求<em>入口文件</em>，而不用关系它的依赖。</p>
+<h3 id="6.1">多重入口</h3>
+<p>服务端依赖管理可以和文件合并结合起来使用。例如有以下依赖关系：</p>
+<pre><code>    b   c  e   f
+     \ /    \ /
+      a      d</code></pre>
+<p>当通过<code>/??a,d</code>形式的URL请求多个文件时，有以下结果：</p>
+<pre><code>=&gt; GET /??a,d
+&lt;= HTTP/1.1 200 OK
+   ...
+   $(b) + $(c) + $(a) + $(e) + $(f) + $(d)</code></pre>
+<h3 id="6.2">动态依赖</h3>
+<p>有时候一个文件的依赖关系无法事先确定。例如在以下目录中，一个JS组件有可能依赖到任何一个多语言文件，但这种依赖关系需要由使用组件的页面来决定。</p>
+<pre><code>- deploy/
+    - i18n/
+        en-us.js
+        zh-cn.js
+    dialog.js</code></pre>
+<p><em>动态依赖</em>特性可用于解决这类问题。在<code>dialog.js</code>中，可以申明以下依赖关系;</p>
+<pre><code>dialog.js    { &quot;requires&quot;: [ &quot;i18n/{i18n}.js&quot; ] }</code></pre>
+<p>可以看到，文件路径中有<code>{x}</code>这样的占位符，这是一个动态依赖申明。</p>
+<p>如果我们使用通常的方式请求<code>dialog.js</code>，独角兽会<em>忽略</em>掉无法确定的动态依赖申明。</p>
+<pre><code>=&gt; GET /dialog.js
+&lt;= HTTP/1.1 200 OK
+   ...
+
+   $(dialog.js)</code></pre>
+<p>但是，我们可以在URL中带上对应的参数，帮助独角兽确定动态依赖申明。</p>
+<pre><code>=&gt; GET /dialog.js?i18n=zh-cn
+&lt;= HTTP/1.1 200 OK
+   ...
+
+   $(i18n/zh-cn.js) + $(dialog.js)</code></pre>
+<h3 id="6.3">依赖排除</h3>
+<p>假设有以下依赖关系，其中的<code>x</code>是一个通用类库。</p>
+<pre><code>    x   y
+     \ /
+      a</code></pre>
+<p>如果我们直接请求<code>a</code>，能得到以下响应：</p>
+<pre><code>=&gt; GET /a
+&lt;= HTTP/1.1 200 OK
+   ...
+
+   $(x) + $(y) + $(a)</code></pre>
+<p>但是如果我们希望单独请求<code>x</code>，让多个页面能共享<code>x</code>的缓存时，使用<code>a</code>的页面应该会发起以下两个请求：</p>
+<pre><code>=&gt; GET /x
+=&gt; GET /a</code></pre>
+<p>如果<code>a</code>当中申明了对<code>x</code>的依赖，页面就会加载两份<code>x</code>的代码，不但影响性能，还可能出问题。如果我们不在<code>a</code>当中申明对<code>x</code>的依赖，这又是一种不太灵活的特殊处理。因此，我们可以按照以下方式发起第二次请求：</p>
+<pre><code>=&gt; GET /??-x,a</code></pre>
+<p>独角兽在处理这种请求时，会把<code>-</code>打头的文件及其依赖从整个依赖关系中排除掉，因此排除掉<code>x</code>的<code>a</code>的依赖关系如下：</p>
+<pre><code>        y
+       /
+      a</code></pre>
+<p>所以独角兽会返回以下响应：</p>
+<pre><code>&lt;= HTTP/1.1 200 OK
+   ...
+
+   $(y) + $(a)</code></pre>
+<p>另外，假设<code>x</code>和<code>y</code>两个文件都要做跨页面缓存时，以下请求方式是一种做法：</p>
+<pre><code>=&gt; GET /??x,y
+=&gt; GET /??-x,-y,a</code></pre>
+<p>但这种方式不太灵活，每当需要跨页缓存的文件发生变动时，所有页面的URL都需要修改。于是我们可以采用以下方式：</p>
+<pre><code>    x   y   x   y
+     \ /     \ /
+    common    a</code></pre>
+<p>我们可以创建一个<code>common</code>文件，专用于加载需要跨页缓存的文件，如此依赖，当需要从一次请求中排除被跨页缓存的文件时，就可以使用以下请求方式：</p>
+<pre><code>=&gt; GET /common
+=&gt; GET /??-common,a</code></pre>
+<h3 id="6.4">异常处理</h3>
+<h4 id="6.4.1">重复依赖</h4>
+<p>独角兽在对一次请求做服务端依赖管理时，会排除掉依赖树中的重复节点。因此，对于以下依赖关系：</p>
+<pre><code>    b   c  c   e
+     \ /    \ /
+      a      d</code></pre>
+<p>有以下结果：</p>
+<pre><code>=&gt; GET /??a,d
+&lt;= HTTP/1.1 200 OK
+   ...
+   $(b) + $(c) + $(a) + $(e) + $(d)</code></pre>
+<p>可以看到，<code>c</code>不会被合并两次。</p>
+<h4 id="6.4.2">环状依赖</h4>
+<p>独角兽会自动打破环状依赖。对于以下依赖关系：</p>
+<pre><code>    a
+    |
+    b   c
+     \ /
+      a</code></pre>
+<p>有以下结果：</p>
+<pre><code>=&gt; GET /a
+&lt;= HTTP/1.1 200 OK
+   ...
+   $(b) + $(c) + $(a)</code></pre>
+<p>可以看到，<code>b</code>对<code>a</code>的环状依赖被打破掉。</p>
+<h4 id="6.4.3">依赖缺失</h4>
+<p>无论是普通的依赖申明，还是动态依赖申明，一旦依赖的某个文件不存在时，独角兽会返回404响应。</p>
+
+<footer>
+<p>© 2011-2014 Alibaba.com, Inc.</p>
+
+</footer>
+</article>
+<script>/*
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48219354-1', 'nqdeng.github.io');
+  ga('send', 'pageview');
+*/
+(function () {
+	var wrapper = document.getElementById('wrapper'),
+		article = document.getElementsByTagName('article')[0],
+		menu = document.getElementById('menu');
+
+	menu.addEventListener &&
+	menu.addEventListener('click', function (e) {
+		if (!wrapper.className) {
+			wrapper.className = 'show-menu';
+		} else {
+			wrapper.className = '';
+		}
+	});
+
+	article.addEventListener &&
+	article.addEventListener('click', function (e) {
+		wrapper.className = '';
+	});
+}());
+</script>
+</div>
+</body>
+</html>
