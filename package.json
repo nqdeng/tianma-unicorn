@@ -13,7 +13,7 @@
     "name": "Nanqiao Deng",
     "email": "nqdeng@gmail.com"
   },
-  "version": "1.0.14",
+  "version": "1.0.15",
   "engines": {
     "node": ">=0.10.0"
   },
